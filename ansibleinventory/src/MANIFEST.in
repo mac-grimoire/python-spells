@@ -1,0 +1,1 @@
+include bin/ansible_inventory_logging.conf
