@@ -1,4 +1,10 @@
 #!/usr/bin/env python3
+
+import functools
+
+# total ordering requires only ne, eq and one of the others lt le gt ge
+
+@functools.total_ordering
 class DistroItem:
   _name = ""
   _commercial = False
@@ -36,6 +42,21 @@ class DistroItem:
   def commercial(self,commercial):
     self._commercial=commercial
 
+  def __lt__(self,other):
+    return self.name < other.name
+
+  def __eq__(self,other):
+    if other != None:
+      return (self.name) == (other.name)
+    else:
+      return (self.name) == None
+
+  def __ne__(self,other):
+    if other != None:
+      return (self.name) != (other.name)
+    else:
+      return (self.name) != None
+
 class Distro:
   def __init__(self):
     self.head = None
@@ -62,6 +83,7 @@ class Distro:
         else:    
           hold._next=f._next
         del f
+        break
       else:
         hold=f
 
@@ -71,12 +93,18 @@ class Distro:
         nodes.append(node._name)
     return " -> ".join(nodes)
 
+
 d = Distro()
 d.append('RedHat',True)
-d.append('CentOS',False)
-#d.remove('RedHat')
-#d.remove('CentOS')
 d.append('Foo',True)
+d.append('CentOS',False)
+d.remove('RedHat')
+#d.remove('CentOS')
 
 for l in d:
+  print(l)
+for l in sorted(d):
+  print(l)
+
+for l in sorted(d,reverse=True):
   print(l)
