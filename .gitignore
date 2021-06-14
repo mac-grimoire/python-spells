@@ -4,3 +4,7 @@ ansibleinventory/src/bin/__pycache__
 ansibleinventory/src/carcano_ansibleinventory.egg-info
 ansibleinventory/src/dist
 ansibleinventory/src/.eggs
+security/json-web-token/jwt.key
+security/json-web-token/jwt.pub
+security/json-web-token/jws.json
+security/json-web-token/jwe.json
