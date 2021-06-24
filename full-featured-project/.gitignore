@@ -1,0 +1,6 @@
+src/carcano/test/__pycache__
+src/carcano/foolist/__pycache__
+src/bin/__pycache__
+src/carcano_foolist.egg-info
+src/dist
+src/.eggs
