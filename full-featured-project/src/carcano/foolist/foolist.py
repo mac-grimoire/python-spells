@@ -11,9 +11,10 @@ initialize logger to NullHandler
 log = logging.getLogger(__name__)
 log.addHandler(logging.NullHandler())
 
+
 class Foolist():
     """
-    Object used to implement a list of FoolistItem 
+    Object used to implement a list of FoolistItem
     """
     def __init__(self):
         """
@@ -37,7 +38,9 @@ class Foolist():
         :param name: the name to assign to the FoolistItem
         :param enabled: a flag to mark it as enabled or not
         """
-        log.debug('Package: '+__name__+', Method: append, Params: name="'+name+'", enabled: '+str(enabled))
+        log.debug('Package: ' + __name__ +
+                ',Method: append, Params: name="' + name +
+                '", enabled: ' + str(enabled))
         if self.head is None:
             self.head = FoolistItem(name, enabled)
             return
@@ -56,7 +59,7 @@ class Foolist():
             if f.name == name:
                 if f == self.head:
                     self.head = f._next
-                else:    
+                else:
                     hold._next = f._next
                 del f
                 break
