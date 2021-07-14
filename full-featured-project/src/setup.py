@@ -4,6 +4,7 @@ setup(
     name='carcano_foolist',
     version='0.0.1',
 
+
     author='Marco Antonio Carcano',
     author_email='mc@carcano.ch',
     description='An example list object tha exploit Pyhon iteratable facilities',
@@ -20,8 +21,12 @@ setup(
     ],
 
     packages=['carcano.foolist'],
-    scripts=['bin/foolist.py'],
+    scripts=['bin/fooapp.py'],
     test_suite='nose.collector',
     tests_require=['nose'],
+    data_files=[
+        ('bin',['bin/logging.conf']),
+        ('bin',['bin/fooapp.rsyslog'])
+    ]
 )
 

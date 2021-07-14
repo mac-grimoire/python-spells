@@ -42,16 +42,27 @@ Python 3 packages used by %_description
 
 %install
 %py3_install
+mkdir %{buildroot}/%{_sysconfdir}
+mkdir %{buildroot}/%{_sysconfdir}/fooapp
+mkdir %{buildroot}/%{_sysconfdir}/rsyslog.d
+cp %{buildroot}/usr/bin/logging.conf %{buildroot}/%{_sysconfdir}/fooapp/logging.conf
+mv %{buildroot}/usr/bin/fooapp.rsyslog %{buildroot}/%{_sysconfdir}/rsyslog.d/fooapp.conf
 
 %check
 %{__python3} setup.py test
+rm -f %{buildroot}/usr/bin/logging.conf
 
 %files -n python3-%{srcname}
-%{_bindir}/foolist.py
+%config  %{_sysconfdir}/fooapp/logging.conf
+%config  %{_sysconfdir}/rsyslog.d/fooapp.conf
+%{_bindir}/fooapp.py
 
 %files -n python3-%{srcname}-common
 %{python3_sitelib}/%{srcname}-*.egg-info/
 %{python3_sitelib}/carcano/foolist/
+
+%post -n python3-%{srcname}
+systemctl restart rsyslog
 
 %changelog
 * Mon Jun 14 2021 Marco Antonio Carcano <mc@carcano.ch>

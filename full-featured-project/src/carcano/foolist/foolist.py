@@ -4,6 +4,12 @@ __version__ = '1.0.0'
 # from .foolistitem import FoolistItem
 from .foolistitem import FoolistItem
 
+import logging
+"""
+initialize logger to NullHandler
+"""
+log = logging.getLogger(__name__)
+log.addHandler(logging.NullHandler())
 
 class Foolist():
     """
@@ -27,7 +33,11 @@ class Foolist():
     def append(self, name, enabled=False):
         """
         Append a FoolistItem to the list
+
+        :param name: the name to assign to the FoolistItem
+        :param enabled: a flag to mark it as enabled or not
         """
+        log.debug('Package: '+__name__+', Method: append, Params: name="'+name+'", enabled: '+str(enabled))
         if self.head is None:
             self.head = FoolistItem(name, enabled)
             return
@@ -38,7 +48,10 @@ class Foolist():
     def remove(self, name):
         """
         Removes an item from the list
+
+        :param name: the name of the FoolistItem to remove
         """
+        log.debug('Package: '+__name__+', Method: remove, Params: name="'+name)
         for f in self:
             if f.name == name:
                 if f == self.head:

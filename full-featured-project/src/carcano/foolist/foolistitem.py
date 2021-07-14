@@ -3,6 +3,13 @@ __version__ = '1.0.0'
 
 import functools
 
+#import logging
+
+"""
+initialize logger to NullHandler
+"""
+#log = logging.getLogger(__name__)
+#log.addHandler(logging.NullHandler())
 
 @functools.total_ordering
 class FoolistItem():
@@ -17,6 +24,9 @@ class FoolistItem():
         """
         Initalize an Item assigning a name. You can optionally assign a value
         to the "enabled" boolean attribute, that defaults to False
+
+        :param name: the name to assign to this FoolistItem Object
+        :param enabled: a flag to mark this FoolistItem Object as enabled or not
         """
         self._name = name
         self._enabled = enabled
@@ -25,13 +35,15 @@ class FoolistItem():
     def __repr__(self):
         """
         Implements the representation of the Item
+
+        :returns: an unambiguous representation of this FoolistItem Object
         """
         return f"Name: {self._name}, Enabled: {self._enabled}"
 
     @property
     def next(self):
         """
-        <FoolistItem>  reference to the next Item when used into a list
+        a reference to the next Item when used into a list
         """
         return self._next
 
@@ -42,7 +54,7 @@ class FoolistItem():
     @property
     def name(self):
         """
-        <string>       name to assign to this Item 
+        the name of this FoolistItem Object 
         """
         return self._name
 
@@ -53,7 +65,7 @@ class FoolistItem():
     @property
     def enabled(self):
         """
-        <boolean>      wether or not the distro is enabled
+        wether or not this FoolistItem Object is enabled
         """
         return self._enabled
 
