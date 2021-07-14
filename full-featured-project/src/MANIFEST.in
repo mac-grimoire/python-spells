@@ -1,2 +1,2 @@
 include bin/logging.conf
-include bin/fooapp.rsyslog
+include share/doc/fooapp/rsyslog/fooapp.conf

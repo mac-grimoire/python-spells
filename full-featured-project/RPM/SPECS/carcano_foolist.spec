@@ -46,7 +46,7 @@ mkdir %{buildroot}/%{_sysconfdir}
 mkdir %{buildroot}/%{_sysconfdir}/fooapp
 mkdir %{buildroot}/%{_sysconfdir}/rsyslog.d
 cp %{buildroot}/usr/bin/logging.conf %{buildroot}/%{_sysconfdir}/fooapp/logging.conf
-mv %{buildroot}/usr/bin/fooapp.rsyslog %{buildroot}/%{_sysconfdir}/rsyslog.d/fooapp.conf
+mv %{buildroot}/usr/share/doc/fooapp/rsyslog/fooapp.conf %{buildroot}/%{_sysconfdir}/rsyslog.d/fooapp.conf
 
 %check
 %{__python3} setup.py test
@@ -62,6 +62,9 @@ rm -f %{buildroot}/usr/bin/logging.conf
 %{python3_sitelib}/carcano/foolist/
 
 %post -n python3-%{srcname}
+systemctl restart rsyslog
+
+%postun -n python3-%{srcname}
 systemctl restart rsyslog
 
 %changelog

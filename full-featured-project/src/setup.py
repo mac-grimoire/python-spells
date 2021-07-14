@@ -26,7 +26,7 @@ setup(
     tests_require=['nose'],
     data_files=[
         ('bin',['bin/logging.conf']),
-        ('bin',['bin/fooapp.rsyslog'])
+        ('share/doc/fooapp/rsyslog',['share/doc/fooapp/rsyslog/fooapp.conf'])
     ]
 )
 

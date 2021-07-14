@@ -5,19 +5,19 @@ import os
 import logging
 import logging.config
 
-def configureLogging():
-    try:
-        configfile=os.path.dirname(os.path.realpath(__file__))+'/logging.conf'
-        logging.config.fileConfig(fname=configfile, disable_existing_loggers=False)
-    except FileNotFoundError:
-        configfile = '/etc/fooapp/logging.conf'
-        logging.config.fileConfig(fname=configfile, disable_existing_loggers=False)
-        pass
+log_config_paths = [ os.path.dirname(os.path.realpath(__file__))+'/logging.conf', '/etc/fooapp/logging.conf' ]
 
-configureLogging()
-logger = logging.getLogger(__name__)
+log_enabled = False
 
-logging.info(__file__+': started')
+for log_config_file in log_config_paths:
+    if os.path.isfile(log_config_file):
+        log_enabled = True
+        break
+if log_enabled == True:
+    logging.config.fileConfig(fname=log_config_file, disable_existing_loggers=False)
+    logger = logging.getLogger(__name__)
+    logging.info(__file__+': started')
+
 d = Foolist()
 d.append('RedHat',True)
 d.append('Suse',True)
@@ -37,4 +37,5 @@ for l in d:
 print("Print the list in descending order:")
 for l in sorted(d,reverse=True):
     print(l)
-logging.info(__file__+': finished')
+if log_enabled == True:
+    logging.info(__file__+': finished')
