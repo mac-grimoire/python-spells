@@ -3,10 +3,6 @@ __version__ = '1.0.0'
 
 import functools
 
-"""
-initialize logger to NullHandler
-"""
-
 
 @functools.total_ordering
 class FoolistItem():
