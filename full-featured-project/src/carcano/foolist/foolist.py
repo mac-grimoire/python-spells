@@ -15,11 +15,25 @@ class Foolist():
     """
     Object used to implement a list of FoolistItem
     """
+    _unique = False
+
     def __init__(self):
         """
         Initialize the list by setting its head to None
         """
         self.head = None
+        self._unique = False
+
+    @property
+    def unique(self):
+        """
+        value of the unique attribute
+        """
+        return self._unique
+
+    @unique.setter
+    def unique(self, isunique):
+        self._unique = isunique
 
     def __iter__(self):
         """
@@ -29,6 +43,7 @@ class Foolist():
         while node is not None:
             yield node
             node = node._next
+        raise StopIteration
 
     def append(self, name, enabled=False):
         """
@@ -40,10 +55,13 @@ class Foolist():
         log.debug('Package: ' + __name__ +
                 ',Method: append, Params: name="' + name +
                 '", enabled: ' + str(enabled))
+        tmp_node = FoolistItem(name, enabled)
         if self.head is None:
             self.head = FoolistItem(name, enabled)
             return
         for current_node in self:
+            if self._unique is True and current_node == tmp_node:
+                return
             pass
         current_node.next = FoolistItem(name, enabled)
 

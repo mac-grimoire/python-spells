@@ -24,8 +24,10 @@ if log_enabled is True:
     logging.info(__file__+': started')
 
 os_list = Foolist()
+os_list.unique = True
 os_list.append('RedHat', True)
 os_list.append('Suse', True)
+os_list.append('CentOS', False)
 os_list.append('CentOS', False)
 print("Print the list:")
 for os in os_list:

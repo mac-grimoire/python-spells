@@ -81,12 +81,3 @@ class FoolistItem():
             return (self.name) == (other.name)
         else:
             return (self.name) is None
-
-    def __ne__(self, other):
-        """
-        Not_equal comparison implementation
-        """
-        if other is not None:
-            return (self.name) != (other.name)
-        else:
-            return (self.name) is not None
