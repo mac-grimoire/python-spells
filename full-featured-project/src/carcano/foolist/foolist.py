@@ -27,12 +27,13 @@ class Foolist():
     @property
     def unique(self):
         """
-        value of the unique attribute
+        if true, set the list so to contain only unique items
         """
         return self._unique
 
     @unique.setter
     def unique(self, isunique):
+        log.debug('Package: '+__name__+', setting unique='+str(isunique))
         self._unique = isunique
 
     def __iter__(self):
@@ -61,6 +62,8 @@ class Foolist():
             return
         for current_node in self:
             if self._unique is True and current_node == tmp_node:
+                log.debug('Package: ' + __name__ +
+                        ',Method: append, Msg: skipping since FoolistItem is already present')
                 return
             pass
         current_node.next = FoolistItem(name, enabled)
